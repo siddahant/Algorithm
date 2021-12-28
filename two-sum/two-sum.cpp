@@ -1,18 +1,17 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        // by Transverse all the elements
-        vector<int> sum;
-        for (int i=0; i<nums.size(); i++){
-            for(int j=i+1; j<nums.size(); j++){
-                if (nums[i]+nums[j]==target){
-                    sum.push_back(i);
-                    sum.push_back(j);
-                    
-                }
-            }
-        }
-        return sum;
+        // by Hash map 
+        unordered_map<int,int>mymap;
+        for (int i=0;i<nums.size();i++)
+            mymap[nums[i]]=i;
+        for (int i=0; i<nums.size(); i++)
+            if (mymap.find(target-nums[i]) != mymap.end() && mymap[target-nums[i]] != i)
+               return {i, mymap[target-nums[i]]};
+        return {};
+                                              
         
+        
+     
     }
 };
